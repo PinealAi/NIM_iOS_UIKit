@@ -44,6 +44,8 @@ typedef NS_ENUM (NSInteger, NIMSessionMessageContentViewLayout){
  */
 - (instancetype)initSessionMessageContentView;
 
+/// for Swift
+- (instancetype)init;
 /**
  *  刷新方法
  *

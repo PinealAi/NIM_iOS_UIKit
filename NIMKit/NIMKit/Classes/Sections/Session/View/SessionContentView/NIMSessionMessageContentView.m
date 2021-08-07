@@ -20,8 +20,12 @@
 
 - (instancetype)initSessionMessageContentView
 {
+    return  [self init];
+}
+
+- (instancetype)init {
     CGSize defaultBubbleSize = CGSizeMake(60, 35);
-    if (self = [self initWithFrame:CGRectMake(0, 0, defaultBubbleSize.width, defaultBubbleSize.height)]) {
+    if (self = [super initWithFrame:CGRectMake(0, 0, defaultBubbleSize.width, defaultBubbleSize.height)]) {
         
         [self addTarget:self action:@selector(onTouchDown:) forControlEvents:UIControlEventTouchDown];
         [self addTarget:self action:@selector(onTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];

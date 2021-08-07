@@ -33,6 +33,11 @@
     return cellContent.length ? cellContent : @"NIMSessionUnknowContentView";
 }
 
+- (NIMSessionMessageContentView *)cellContentView:(NIMMessageModel *)model {
+    Class class = NSClassFromString([self cellContent:model]);
+    return [[class alloc] initSessionMessageContentView];
+}
+
 
 - (UIEdgeInsets)contentViewInsets:(NIMMessageModel *)model{
     id<NIMSessionContentConfig>config = [[NIMSessionContentConfigFactory sharedFacotry] configBy:model.message];    
@@ -150,6 +155,10 @@
 - (NSArray *)customViews:(NIMMessageModel *)model
 {
     return nil;
+}
+
+- (void)customViewsLayout:(NIMMessageModel *)model cell:(NIMMessageCell *)cell {
+    
 }
 
 - (BOOL)disableRetryButton:(NIMMessageModel *)model

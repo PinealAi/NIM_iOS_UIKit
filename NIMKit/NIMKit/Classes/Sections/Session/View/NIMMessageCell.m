@@ -29,8 +29,6 @@
 
 @property (nonatomic,strong) NIMMessageModel *model;
 
-@property (nonatomic,copy)   NSArray *customViews;
-
 @end
 
 
@@ -249,10 +247,10 @@
     if (_bubbleView == nil)
     {
         id<NIMCellLayoutConfig> layoutConfig = [[NIMKit sharedKit] layoutConfig];
-        NSString *contentStr = [layoutConfig cellContent:self.model];
-        NSAssert([contentStr length] > 0, @"should offer cell content class name");
-        Class clazz = NSClassFromString(contentStr);
-        NIMSessionMessageContentView *contentView =  [[clazz alloc] initSessionMessageContentView];
+//        NSString *contentStr = [layoutConfig cellContent:self.model];
+//        NSAssert([contentStr length] > 0, @"should offer cell content class name");
+//        Class clazz = NSClassFromString(contentStr);
+        NIMSessionMessageContentView *contentView =  [layoutConfig cellContentView:self.model];
         NSAssert(contentView, @"can not init content view");
         _bubbleView = contentView;
         _bubbleView.delegate = self;
@@ -277,6 +275,10 @@
 
     for (UIView *view in self.customViews) {
         [self.contentView addSubview:view];
+    }
+    
+    if (self.customViews.count > 0) {
+        [layoutConfig customViewsLayout:self.model cell:self];
     }
 }
 

@@ -28,6 +28,7 @@
 @property (nonatomic, strong) UIButton *readButton;                               //已读
 @property (nonatomic, strong) UIButton *selectButton;                             //选择
 @property (nonatomic, strong) UIButton *selectButtonMask;                         //选择遮罩
+@property (nonatomic,copy)   NSArray *customViews;
 
 @property (nonatomic, readonly) NIMMessageModel *model;
 

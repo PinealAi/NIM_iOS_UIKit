@@ -10,6 +10,7 @@
 
 @class NIMSessionMessageContentView;
 @class NIMMessageModel;
+@class NIMMessageCell;
 
 @protocol NIMCellLayoutConfig <NSObject>
 
@@ -24,6 +25,11 @@
  *  需要构造的cellContent类名
  */
 - (NSString *)cellContent:(NIMMessageModel *)model;
+
+/**
+ *  需要构造的cellContent对象 修复`cellContent`在Swift扩展不好
+ */
+- (NIMSessionMessageContentView *)cellContentView:(NIMMessageModel *)model;
 
 /**
  *  左对齐的气泡，cell气泡距离整个cell的内间距
@@ -93,6 +99,8 @@
  */
 - (NSArray *)customViews:(NIMMessageModel *)model;
 
+
+- (void)customViewsLayout:(NIMMessageModel *)model cell:(NIMMessageCell *)cell;
 
 /**
  *  是否开启重试叹号开关
