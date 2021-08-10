@@ -112,6 +112,10 @@
  */
 - (id<NIMSessionConfig>)sessionConfig;
 
+- (NIMInputToolBar *)customToolBar;
+
+- (void)setupInputView;
+
 
 #pragma mark - 消息接口
 /**

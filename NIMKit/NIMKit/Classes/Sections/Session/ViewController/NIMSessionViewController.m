@@ -123,8 +123,16 @@
         [self.sessionInputView setInputDelegate:self];
         [self.sessionInputView setInputActionDelegate:self];
         [self.sessionInputView refreshStatus:NIMInputStatusText];
+        NIMInputToolBar *customToolBar = [self customToolBar];
+        if (customToolBar) {
+            self.sessionInputView.toolBar = customToolBar;
+        }
         [self.view addSubview:_sessionInputView];
     }
+}
+
+- (NIMInputToolBar *)customToolBar {
+    return nil;
 }
 
 

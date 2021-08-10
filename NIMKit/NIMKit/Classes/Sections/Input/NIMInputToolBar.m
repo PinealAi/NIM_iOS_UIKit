@@ -17,7 +17,7 @@
 
 @property (nonatomic,copy)  NSDictionary *dict;
 
-@property (nonatomic,assign) NIMInputStatus status;
+
 
 @end
 
