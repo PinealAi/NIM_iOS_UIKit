@@ -172,9 +172,6 @@
     [self.interactor resetLayout];
 }
 
-
-
-
 #pragma mark - 消息收发接口
 - (void)sendMessage:(NIMMessage *)message
 {

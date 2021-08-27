@@ -116,6 +116,8 @@
 
 - (void)setupInputView;
 
+- (void)didChangeInputHeight:(CGFloat)inputHeight;
+
 
 #pragma mark - 消息接口
 /**

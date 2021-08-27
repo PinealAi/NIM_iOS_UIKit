@@ -106,40 +106,41 @@
 - (void)adjustTableView
 {
     CGRect rect = self.tableView.frame;
-    
-    //tableview 的位置
-    UIView *superView = self.tableView.superview;
-    UIEdgeInsets safeAreaInsets = UIEdgeInsetsZero;
-    if (@available(iOS 11.0, *))
-    {
-        safeAreaInsets = superView.safeAreaInsets;
-    }
-    
-    CGFloat containerSafeHeight = self.tableView.superview.frame.size.height - safeAreaInsets.bottom;
-    
-    rect.size.height = containerSafeHeight - self.inputView.toolBar.nim_height;
-    
-    
-    //tableview 的内容 inset
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    CGFloat visiableHeight = 0;
-    if (@available(iOS 11.0, *))
-    {
-        contentInsets = self.tableView.adjustedContentInset;
-    }
-    else
-    {
-        contentInsets = self.tableView.contentInset;
-    }
-    
-    //如果气泡过少，少于总高度，输入框视图需要顶到最后一个气泡的下面。
-    visiableHeight = visiableHeight + self.tableView.contentSize.height + contentInsets.top + contentInsets.bottom;
-    visiableHeight = MIN(visiableHeight, rect.size.height);
-    
-    rect.origin.y    = containerSafeHeight - visiableHeight - self.inputView.nim_height;
-    rect.origin.y    = rect.origin.y > 0? 0 : rect.origin.y;
-    
-    
+    rect.size.height = CGRectGetMinY(self.inputView.frame);
+//
+//    //tableview 的位置
+//    UIView *superView = self.tableView.superview;
+//    UIEdgeInsets safeAreaInsets = UIEdgeInsetsZero;
+//    if (@available(iOS 11.0, *))
+//    {
+//        safeAreaInsets = superView.safeAreaInsets;
+//    }
+//
+//    CGFloat containerSafeHeight = self.tableView.superview.frame.size.height - safeAreaInsets.bottom;
+//
+//    rect.size.height = containerSafeHeight - self.inputView.toolBar.nim_height;
+//
+//
+//    //tableview 的内容 inset
+//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+//    CGFloat visiableHeight = 0;
+//    if (@available(iOS 11.0, *))
+//    {
+//        contentInsets = self.tableView.adjustedContentInset;
+//    }
+//    else
+//    {
+//        contentInsets = self.tableView.contentInset;
+//    }
+//
+//    //如果气泡过少，少于总高度，输入框视图需要顶到最后一个气泡的下面。
+//    visiableHeight = visiableHeight + self.tableView.contentSize.height + contentInsets.top + contentInsets.bottom;
+//    visiableHeight = MIN(visiableHeight, rect.size.height);
+//
+//    rect.origin.y    = containerSafeHeight - visiableHeight - self.inputView.nim_height;
+//    rect.origin.y    = rect.origin.y > 0? 0 : rect.origin.y;
+//
+//
     BOOL tableChanged = !CGRectEqualToRect(self.tableView.frame, rect);
     if (tableChanged)
     {
@@ -147,6 +148,52 @@
         [self.tableView nim_scrollToBottom:YES];
     }
 }
+
+//- (void)adjustTableView
+//{
+//    CGRect rect = self.tableView.frame;
+//
+//    //tableview 的位置
+//    UIView *superView = self.tableView.superview;
+//    UIEdgeInsets safeAreaInsets = UIEdgeInsetsZero;
+//    if (@available(iOS 11.0, *))
+//    {
+//        safeAreaInsets = superView.safeAreaInsets;
+//    }
+//
+//    CGFloat containerSafeHeight = self.tableView.superview.frame.size.height - safeAreaInsets.bottom;
+//
+//    rect.size.height = containerSafeHeight - self.inputView.toolBar.nim_height;
+//
+//
+//    //tableview 的内容 inset
+//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+//    CGFloat visiableHeight = 0;
+//    if (@available(iOS 11.0, *))
+//    {
+//        contentInsets = self.tableView.adjustedContentInset;
+//    }
+//    else
+//    {
+//        contentInsets = self.tableView.contentInset;
+//    }
+//
+//    //如果气泡过少，少于总高度，输入框视图需要顶到最后一个气泡的下面。
+//    visiableHeight = visiableHeight + self.tableView.contentSize.height + contentInsets.top + contentInsets.bottom;
+//    visiableHeight = MIN(visiableHeight, rect.size.height);
+//
+//    rect.origin.y    = containerSafeHeight - visiableHeight - self.inputView.nim_height;
+//    rect.origin.y    = rect.origin.y > 0? 0 : rect.origin.y;
+//
+//
+//    BOOL tableChanged = !CGRectEqualToRect(self.tableView.frame, rect);
+//    if (tableChanged)
+//    {
+//        [self.tableView setFrame:rect];
+//        [self.tableView nim_scrollToBottom:YES];
+//    }
+//}
+
 
 #pragma mark - Notification
 - (void)menuDidHide:(NSNotification *)notification
